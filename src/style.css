@@ -1,0 +1,66 @@
+
+
+body {
+  max-width: 65ch;
+  padding: 1rem 1rem;
+  margin: auto;
+  line-height: 1.65;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  margin: 3rem 0 1rem;
+}
+
+
+* {
+  --main-text-hue: 0;
+  --main-text-sat: 0%;
+  --main-text-lightness: 11%;
+
+  --bold-text-lightness: 3%;
+  --semibold-text-lightness: 5%;
+  --lighter-text-lightness: 20%;
+  --lightest-text-lightness: 30%; 
+
+  color: hsl(var(--main-text-hue),var(--main-text-sat),var(--body-text-lightness));
+
+}
+
+strong, h1, h2, h3, h4, h5, h6 {
+  color: hsl(var(--main-text-hue),var(--main-text-sat),var(--bold-text-lightness));
+}
+
+blockquote, code {
+  color: hsl(var(--main-text-hue),var(--main-text-sat),var(--semibold-text-lightness));
+}
+
+p, ul, ol {
+  color: hsl(var(--main-text-hue),var(--main-text-sat),var(--main-text-lightness));
+}
+
+figcaption {
+  color: hsl(var(--main-text-hue),var(--main-text-sat),var(--lighter-text-lightness));
+}
+
+hr {
+  color: hsl(var(--main-text-hue),var(--main-text-sat),var(--lightest-text-lightness));
+}
+
+pre, code {
+  background-color: hsl(0,0%,97%);
+}
+
+blockquote {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  font-size: 1.75rem;
+  margin-left: 0px;
+  padding-left: 2.5rem;
+  border-left: 4px solid rgb(95, 209, 150);
+}
+
+hr {
+  margin-top: 3rem;
+}

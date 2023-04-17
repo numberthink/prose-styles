@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="src/style.css" rel="stylesheet" type="text/css"/>
+    <title>Prose style test</title>
+  </head>
+  <body>
+    <h1>Styling prose on the web</h1>
+    <p>There's oceans of content on the web, much of which is like what you're reading now: text. How text is presented on the web&#8212;its style, font, layout, color&#8212;is analogous to the clarity of the water. If it's too murky, you can't see much. But if it's perfectly clear, you won't even notice it, and can instead focus on all the amazing stuff under the sea. </p>
+    <p>This is how I approach styling text on the web: styles serve to clarify and illuminate content, and when done right, should hardly be noticed at all.</p>
+    <h2>Basic text styles</h2>
+    <p>At first glance, making text readable shouldn't be too hard. Text is just text. There aren't a whole lot of variables to work with... well besides the 
+      <code>font-size, line-height, alignment, margin, font-weight, font-color, background-color, text-decoration</code>. Okay, maybe that is a lot.
+    </p>
+    <p>Only you don't need to set all of those perfectly. Actually, you only need a few CSS styles to make text readable.</p>
+    <p>This tiny snippet of CSS can take you a long way:</p>
+    <pre>
+      <code>
+        body {
+          max-width: 65ch;
+          padding: 1rem 1rem;
+          margin: auto;
+          line-height: 1.75;
+          font-size: 1.5em;
+          font-family: sans-serif;
+        }
+      </code>
+    </pre>
+    <p>I adapted this ruleset from <a href="https://www.swyx.io/css-100-bytes">this post by swyx</a>.</p>
+    <p>Let's break it down line by line.</p>
+    <p>First is the selector. I chose the <code>body</code> element since in the vast majority of cases, text will be inside the body tag of the HTML. You could also use the <code>html</code> element as a more general selector, or <code>:root</code> which is more general still.</p>
+    <p>I just chose <code>body</code> since it is a <em>body</em> of text after all (or a <em>body</em> of water if we're still swimming in the ocean metaphor).</p>
+    <p>Now let's get into the 5 properties in this ruleset. First we have the <code>max-width: 65ch</code>. According to <a href="https://baymard.com/blog/line-length-readability">this research</a> by the Baymard Institute, the optimal "readable" range is measured in characters and should be about 50-75 characters wide. I chose 65 but you can go a little narrower or wider.</p>
+    <p>Conveniently, CSS let's you express width in character units using the <code>ch</code> unit.</p>
+    <p>Next is <code>padding</code> which is set as <code>1rem 1rem</code>. The first number represents top/bottom and the second left/right padding.</p>
+    <p>Setting the left/right padding as <code>1rem</code> keeps the text from going all the way to the edges of a screen on devices smaller than the <code>max-width</code>. This can be unpleasant because you feel like, "This is starting from the edge, am I missing something?" and can put your readers on edge.</p>
+    <p>The top/bottom padding of <code>1rem</code> also gives you a little breathing room at the top and bottom of the page (and some may use even more).</p>
+    <p>The <code>rem</code> represents "root element units". These are <em>like</em> pixel units, except that they are <em>relative</em>. This means if someone zooms in or out, whatever is measured in <code>rem</code> will increase or decrease in size proportionally, as opposed to pixel units which are still a pixel no matter how much you zoom. <code>em</code> are similar but differ slightly from <code>rem</code> in that they are relative to the parent element, as opposed to the <code>:root</code> element which makes them susceptible to compounding effects.
+    <a href="https://www.joshwcomeau.com/css/surprising-truth-about-pixels-and-accessibility/">This blog post</a> does a great deep dive into the nuances of pixels vs. rem/em. </p>
+    <p>Next we have <code>margin</code> which is set as <code>auto</code>. The "auto" means that it centers the text automatically when the screen width is greater than the <code>max-width</code>.</p>
+    <p>The <code>line-height</code> of 1.75 gives ample spacing between lines for clarity. There's no unit attached so it's relative to the <code>font-size</code>.</p>
+    <p>The <code>font-size</code> is set to <code>1.5rem</code>. This just feels like a good size to me.</p>
+    <p>Finally, I made the <code>font-family</code> sans-serif because it it looks cleaner to me.</p>
+    <h2>Just a tad more style</h2>
+    <p>If you want to take it a step further, you can add a few more styles to give headings more prominence.</p>
+    <pre><code>
+      h1,h2,h3,h4,h5,h6 {
+        margin: 3rem 0 1rem;
+      }
+    </code></pre>
+    <p>The above ruleset gives all the headings (<code>h1-h6</code>, with <code>h1</code> being the biggest heading) more margin on the top and a little more on the bottom.</p>
+    <p>Regardless, it's really not that complicated to style basic text so it's presentable and easy to read. In fact, that's kinda the point: the style of text shouldn't be conspicuous, it's the content itself you want the reader focusing on.
+      <aside>That is, unless the content is <em>about</em> styles, in which case yeah, you do kinda want the reader focusing on them.</aside>
+    </p>
+    <hr/>
+    <h2>Style is simplicity and transparency</h2>
+    <p>But we don't have to stop there. We just have to be <em>thoughtful</em> about any more styles that are added.</p>
+    <p>I think a lot about this quote by David Byrne of the Talking Heads. In his book, <em>How Music Works</em>, he describes how, </p>
+    <blockquote>Simplicity is a kind of transparency in which subtle nuances can have outsize effects. When everything is visible and appears to be dumb, that's when the details take on larger meanings. </blockquote>
+    <p>I believe this applies to styling web content: you want the styles to be simple, and almost transparent, so the actually important details can
+      <strong>stand out</strong>.
+    </p>
+    <h2>Styling HTML tags</h2>
+    <p>So let's add a little more style, but do so in a way that enhances the meaning instead of distracting from it.</p>
+    <p>But how? Since I'm styling with CSS&mdash;the primary way to style on the Web&mdash;there's a a few ways you can add style to an alement of prose. You can use the HTML tag as a selector&mdash;like what I did above with the <code>body</code> and header tags. You can use classes. You can use inline styles. Or you can use a third-party library, like TailwindCSS, that uses <em>semantic</em> classes. </p>
+    <p>There are applications for all these methods of applying styles, but right now I'm just trying to stay basic web prose. So all I'm going to worry about is styling the various HTML elements&mdash;like <code>p</code>, <code>h1</code>, and <code>blockquote</code>&mdash;that make up that prose.  </p>
+    <p>Why focus just on HTML tags? Because HTML tags should already carry the semantic meaning of the various elements of prose. The styles are just a way to help convey that semantic meaning already embedded in the document to a human reader.</p>
+    <p>This is part of the magic of the web, and what sets web prose apart from, say, writing on Microsoft Word or Google Docs or a notes app. </p>
+    <h2>Write once, style forever</h2>
+    <p>To understand the power of HTML tags, I think it's helpful to take a trip back to middle school (at least the middle school I attended circa 2005-2009).</p>
+    <p>In my day, we'd do our writing assignments in Microsoft Word. Alongside the writing assignment, there was usually a "style guide" which told you how the writing should be presented. These included document-wide requiriements, e.g. 12 point font, double spaced, certain margins, and the first line of each paragraph indented by a certain amount. There were also specific requirements for certain things like blockquotes, which had to have more margin, etc.</p>
+    <p>Implicit in these style guides were the fact that style informed semantic content, and not the other way around. You knew something was a blockquote
+      <em>because</em> it was indented a certain amount. You knew something was a heading
+      <em>because</em>  of it's font.
+    </p>
+      <p>This wasn't pointless. I'm sure the difficult job of being an English teacher was made a little easier when all papers were formatted the same way, and it taught us some basics in presentation and style.</p>
+      <p>But on the web, this is thankfully reversed. Elements of text&mdash;and other things, like images and video&mdash;are <em>first</em> placed into an element tag that corresponds with their semantic meaning. The title of a page is wrapped in a <code>title</code> tag. The main heading is wrapped in an <code>h1</code> tag. Blockquotes are wrapped in <code>blockquote</code> tag. </p>
+      <p><em>Then</em> you can decide how to style those specific elements&mdash;like how much bigger headings should be, and how much extra margin blockquotes should have. But the beauty is, you don't have to go into your document and manually change all the blockquotes if you decide they need more margin. You can style them at the tag-level, and can modify those styles for different contexts, different devices, and different users, all without ever having to touch the actual content again.</p>
+    <h2>Letting the user-agent do the work</h2>
+    <p>In fact, once elements are placed in their proper HTML tag, you barely have to do any styling at all. Browsers will take care of a lot of the basic styling for you. This is called the <code>user-agent</code> stylesheet (since it's an agent&mdash;also known as a browser&mdash;acting on behalf of the user).</p>
+    <p>You may have noticed that, despite only adding a few lines of CSS and not even mentioning <code>strong</code> (i.e. bold) or <code>a</code> (i.e. link) elements, the bold elements were still <strong>bolded</strong>, and the links <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a">underlined</a>.</p>
+    <p>These styles were added automatically by your <code>user-agent</code>. My <code>user-agent</code> also makes heading elements bold, makes code elements <code>monospace</code> font, makes <code>em</code> or "emphasized" elements <em>italic</em>, and adds <code>40px</code> of margin to blockquotes. All without me doing a thing. There's almost no CSS styles for me to worry about. <em>That's</em> simplicity. </p>   
+    <h2>Writing for machines and humans</h2>
+    <p>Besides relieving some of the painstaking tedium of styling different elements of text, there's another benefit to wrapping text content in element tags that correspond to their semantic meaning: It makes the document machine-friendly. That means things like search engines can parse and understand your content automatically. (Then again, with AI training on web content, if you don't want your ideas stolen and repackaged by AI, then maybe you want to make your content <em>un</em>-friendly to machines but that's beyond the scope of this article.)</p> 
+    <p>Take, for example, a screen reader&mdash;an electornic assistant that reads the contents of a web page to someone with a visual impairment. Imagine if none of the text content on a page was encapsulated by an element, and you had to infer from its style what it was&mdash;like it was a middle schooler's essay. The screen reader would have to say: "And here's a line that is bolded, centered and 16 point font" and you would have to infer that's a heading. And then it'd say, "Here's a few lines that have extra margin" and you'd infer that was a blockquote. Doesn't sound very easy, right? (Luckily, nothing I wrote back in middle school deserves to see the light of day, so that won't be an issue for anything I wrote). </p>
+    <p>The only drawback to writing text in HTML elements is that, while it's machine-friendly, it's not always human-friendly to place everything in ugly brackets like <code>&lt;p&gt;</code>. This was the impetus for inventing <a href="https://www.markdownguide.org/">markdown</a>, a more human-friendly way to write text for the web. Markdown uses simple indicators, like <code>#</code> symbol for headings, or <code>-</code> for lists, or surrounded by <code>_</code> for italics, that corrsepond directly to HTML elements. Although you still have to use a markdown-parser or a plugin to convert the markdown to HTML. </p>
+    <h2>The elements of style</h2>
+    <p>Before adding more styles, let's first establish some of the different kinds of HTML elements that make-up a text-focused web page. If you want to see *all* HTML elements, you can browse them <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">here</a>.</p>
+    <p>A non-exhaustive list of HTML tags in typical web prose:</p>
+    <ul>
+      <li>Paragraph (<code>p</code>)</li>
+      <li>Headings (<code>h1,h2,h3,h4,h5,h6</code>)</li>
+      <li>Blockquote (<code>blockquote</code>)</li>
+      <li>Inline quote (<code>q</code>)</li>
+      <li>Code (<code>code</code>, can also be wrapped in <code>pre</code> element if it's a code block)</li>
+      <li>Link or anchor (<code>a</code>)</li>
+      <li>List (<code>ul</code>) and ordered list (<code>ol</code>)</li>
+      <li>List elements (<code>li</code>)</li>
+      <li>Emphasis or italic (<code>em</code>)</li>
+      <li>Strong or bold (<code>strong</code>)</li>
+      <li>Horizontal break (<code>p</code>)</li>
+      <li>Aside (<code>aside</code>)</li>
+      <li>Image (<code>img</code>)</li>
+      <li>Figure (<code>figure</code>)</li>
+      <li>Figure caption (<code>figcaption</code>)</li>
+      <li>Table (<code>td</code>)</li>
+    </ul>
+    <p>There are of course others but these are the main tags I focus on styling.</p>
+
+    <h2>Text color</h2>
+<p>
+Okay, I have all the elements I want to style. But what styles should I add? Like I said earlier, the browser adds a lot of the basic styles for you, so it's only necessary to think about what you want to do in <em>addition</em> to those. 
+</p>
+
+<p>
+One of the things the <code>user-agent</code> doesn't set is text-color, since it's largely subjective. 
+</p>
+
+<p>
+I want to keep things simple, so I want the text to be black on white background. But this doesn't mean the text has to be totally black. It can be easier to read if most of the text softened a bit. Plus, then you can make certain elements stand out out by darkening them relative to the base text. Or you can soften certain elements ever so slightly. 
+</p>
+<p>
+I'll color the text using the HSL color system, which separates out the hue, saturation and lightness so you can toggle each of those separately. 
+</p>
+<p>
+I'll use CSS variables to define each component of the HSL color so I only have to change the variables in one place, and then I'll define the colors by using those variables like this:
+</p>
+
+<pre><code>
+* {
+  --main-text-hue: 0;
+  --main-text-sat: 0%;
+  --main-text-lightness: 11%;
+
+  color: hsl(
+    var(--main-text-hue),
+    var(--main-text-sat),
+    var(--main-text-lightness));
+
+}
+</code></pre>
+<p>
+The "star" (<code>*</code>) selector means these apply all the elements in the document. 
+</p>
+<p>
+For the main text, i.e. <code>paragraph</code> elements, I want it to be slightly softer than total black. 0% lightness means total black, so I'll make the main text 11% lightness. I'll also include list elements in this color category since I consider them part of the main body of text. 
+</p>
+<p>
+So after setting the <code>--main-text-lightness</code> variable, the main text color ruleset looks like this:
+</p>
+
+<pre><code>
+p, ul, ol {
+  color: hsl(
+    var(--main-text-hue),
+    var(--main-text-sat),
+    var(--main-text-lightness));
+}
+</code></pre>
+<p>
+Then there are some elements, like headings and bold, that I want to be darker than the main body of text. For these I'll set another lightness variable, called <code>--bold-text-lightness</code>, and set it to 3%. Then the ruleset for bold text colors will look like so:
+</p>
+
+<pre><code>
+strong, h1, h2, h3, h4, h5, h6 {
+  color: hsl(
+    var(--main-text-hue),
+    var(--main-text-sat),
+    var(--bold-text-lightness));
+}
+</code></pre>
+<p>
+There are some other element I want to be bolder, but not quite that bold. So I'll set another lightness variable, <code>--semibold-text-lightness</code>, for elements like blockquotes and code, and set it to 5%. 
+</p>
+
+<pre><code>
+blockquote, code {
+  color: hsl(
+    var(--main-text-hue),
+    var(--main-text-sat),
+    var(--semibold-text-lightness));
+}
+</code></pre>
+<p>
+Finally, I want to make a few more text-lightness categories for things like figure captions and horizontal rules, which I want lighter than the rest of the text. 
+</p>
+<p>
+So I'll make a <code>--lighter-text-lightness</code> and <code>--lightest-text-lightness</code> CSS variables, and set those to 20% and 30% lightness respectively so they're lighter than everything else. I'll give <code>figcaption</code> elements the lighter text color, and <code>horizontal rule</code>'s the lightest so those rulesets will look like this:
+</p>
+
+<pre><code>
+figcaption {
+  color: hsl(
+    var(--main-text-hue),
+    var(--main-text-sat),
+    var(--lighter-text-lightness));
+}
+
+hr {
+  color: hsl(
+    var(--main-text-hue),
+    var(--main-text-sat),
+    var(--lightest-text-lightness));
+}
+</code></pre>
+<p>
+That's it for text color. You can barely even notice them&mdash;which is good&mdash;but these colors ever-so-slightly reinforce the semantic contents of their elements. 
+</p>
+
+<h2>Final touches</h2>
+<p>
+I'm almost done, I just need to add a few finishing touches. 
+</p>
+<p>
+For one, I'll give <code>pre</code> and <code>code</code> elements a slightly gray background color. This just helps differentiate them from the main text a little bit more. 
+</p>
+
+
+<pre><code>
+pre, code {
+  background-color: hsl(0,0%,97%);
+}
+</code></pre>
+<p>
+Next, I'll add just a little more margin for horizontal rules so they feel like they're separating sections of content. 
+</p>
+
+<pre><code>
+hr {
+  margin-top: 3rem;
+}
+</code></pre>
+<p>
+Finally, <code>blockquotes</code> are important elements so I want them to stand out a little more than the <code>40px</code> of  left-margin that the <code>user-agent</code> gives them. 
+</p>
+<p>
+So I'll give them <code>3rem</code> of margin on the top and bottom, and a slightly bigger font-size of <code>1.75rem</code>.
+</p>
+<p>
+But blockquotes I think deserve even a little more emphasis than that. So I'll add just a little border on the left by setting the <code>margin-left</code> to 0, adding <code>2.5rem</code> of padding on the left side, and giving it a <code>4px</code> solid left border. I'll also make the border a light green just to add a little bit of flare. 
+</p>
+<p>
+There's no other color in the article so this helps say that the blockquote, at least the blockquote I included in this article, is <strong>really important</strong>. In fact, if my reader remembers anything from this article, I want it to be the quote above from David Byrne, because he articulated the point of this article better than I ever could. Everything else is plain and dumb. 
+</p>
+<p>
+Altogether, the ruleset for blockquote element looks like this:
+</p>
+
+<pre><code>
+  blockquote {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    font-size: 1.75rem;
+    margin-left: 0px;
+    padding-left: 2.5rem;
+    border-left: 4px solid rgb(95, 209, 150);
+  }
+</code></pre>
+<p>
+And that's it! Those are all the styles I used for this very article. It's not much, but the simplicity allows the few styles I did add to have outsize effect. And hopefully these styles let the reader focus on the content and forget about the style altogether.
+</p> 
+<p>
+Except, of course, the content <em>is</em> about the style, so I hope you paid attention to the style, too. 
+</p>
+<p>
+In any case, here's the full CSS stylesheet used to style this article if you're interested:
+</p>
+
+<pre><code>
+  /* base styles */
+  body {
+    max-width: 65ch;
+    padding: 1rem 1rem;
+    margin: auto;
+    line-height: 1.65;
+    font-size: 1.5rem;
+    font-family: sans-serif;
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    margin: 3rem 0 1rem;
+  }
+
+  /* text colors */
+  * {
+    --main-text-hue: 0;
+    --main-text-sat: 0%;
+    --main-text-lightness: 11%;
+
+    --bold-text-lightness: 3%;
+    --semibold-text-lightness: 5%;
+    --lighter-text-lightness: 20%;
+    --lightest-text-lightness: 30%; 
+
+    color: hsl(
+      var(--main-text-hue),
+      var(--main-text-sat),
+      var(--body-text-lightness));
+
+  }
+
+  strong, h1, h2, h3, h4, h5, h6 {
+    color: hsl(
+      var(--main-text-hue),
+      var(--main-text-sat),
+      var(--bold-text-lightness));
+  }
+
+  blockquote, code {
+    color: hsl(
+      var(--main-text-hue),
+      var(--main-text-sat),
+      var(--semibold-text-lightness));
+  }
+
+  p, ul, ol {
+    color: hsl(
+      var(--main-text-hue),
+      var(--main-text-sat),
+      var(--main-text-lightness));
+  }
+
+  figcaption {
+    color: hsl(
+      var(--main-text-hue),
+      var(--main-text-sat),
+      var(--lighter-text-lightness));
+  }
+
+  hr {
+    color: hsl(
+      var(--main-text-hue),
+      var(--main-text-sat),
+      var(--lightest-text-lightness));
+  }
+
+  /* extra touches */
+  pre, code {
+    background-color: hsl(0,0%,97%);
+  }
+
+  blockquote {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    font-size: 1.75rem;
+    margin-left: 0px;
+    padding-left: 2.5rem;
+    border-left: 4px solid rgb(95, 209, 150);
+  }
+
+  hr {
+    margin-top: 3rem;
+  }
+</code></pre>
+    <script type="module" src="src/script.js"></script>
+  </body>
+</html>
