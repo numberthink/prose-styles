@@ -32,7 +32,7 @@
     <p>Let's break it down line by line.</p>
     <p>First is the selector. I chose the <code>body</code> element since in the vast majority of cases, text will be inside the body tag of the HTML. You could also use the <code>html</code> element as a more general selector, or <code>:root</code> which is more general still.</p>
     <p>I just chose <code>body</code> since it is a <em>body</em> of text after all (or a <em>body</em> of water if we're still swimming in the ocean metaphor).</p>
-    <p>Now let's get into the 5 properties in this ruleset. First we have the <code>max-width: 65ch</code>. According to <a href="https://baymard.com/blog/line-length-readability">this research</a> by the Baymard Institute, the optimal "readable" range is measured in characters and should be about 50-75 characters wide. I chose 65 but you can go a little narrower or wider.</p>
+    <p>Now let's get into the 6 properties in this ruleset. First we have the <code>max-width: 65ch</code>. According to <a href="https://baymard.com/blog/line-length-readability">this research</a> by the Baymard Institute, the optimal "readable" range is measured in characters and should be about 50-75 characters wide. I chose 65 but you can go a little narrower or wider.</p>
     <p>Conveniently, CSS let's you express width in character units using the <code>ch</code> unit.</p>
     <p>Next is <code>padding</code> which is set as <code>1rem 1rem</code>. The first number represents top/bottom and the second left/right padding.</p>
     <p>Setting the left/right padding as <code>1rem</code> keeps the text from going all the way to the edges of a screen on devices smaller than the <code>max-width</code>. This can be unpleasant because you feel like, "This is starting from the edge, am I missing something?" and can put your readers on edge.</p>
@@ -70,7 +70,7 @@
     <p>This is part of the magic of the web, and what sets web prose apart from, say, writing on Microsoft Word or Google Docs or a notes app. </p>
     <h2>Write once, style forever</h2>
     <p>To understand the power of HTML tags, I think it's helpful to take a trip back to middle school (at least the middle school I attended circa 2005-2009).</p>
-    <p>In my day, we'd do our writing assignments in Microsoft Word. Alongside the writing assignment, there was usually a "style guide" which told you how the writing should be presented. These included document-wide requiriements, e.g. 12 point font, double spaced, certain margins, and the first line of each paragraph indented by a certain amount. There were also specific requirements for certain things like blockquotes, which had to have more margin, etc.</p>
+    <p>In my day, we'd do our writing assignments in Microsoft Word. Alongside the writing assignment, there was usually a "style guide" which told you how the writing should be presented. These included document-wide requiriements, e.g. 12 point font, double spaced, certain margins, and the first line of each paragraph indented by a certain amount. Certain elements, like blockquotes, also had to have more margin, etc.</p>
     <p>Implicit in these style guides were the fact that style informed semantic content, and not the other way around. You knew something was a blockquote
       <em>because</em> it was indented a certain amount. You knew something was a heading
       <em>because</em>  of it's font.
@@ -83,8 +83,14 @@
     <p>You may have noticed that, despite only adding a few lines of CSS and not even mentioning <code>strong</code> (i.e. bold) or <code>a</code> (i.e. link) elements, the bold elements were still <strong>bolded</strong>, and the links <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a">underlined</a>.</p>
     <p>These styles were added automatically by your <code>user-agent</code>. My <code>user-agent</code> also makes heading elements bold, makes code elements <code>monospace</code> font, makes <code>em</code> or "emphasized" elements <em>italic</em>, and adds <code>40px</code> of margin to blockquotes. All without me doing a thing. There's almost no CSS styles for me to worry about. <em>That's</em> simplicity. </p>   
     <h2>Writing for machines and humans</h2>
-    <p>Besides relieving some of the painstaking tedium of styling different elements of text, there's another benefit to wrapping text content in element tags that correspond to their semantic meaning: It makes the document machine-friendly. That means things like search engines can parse and understand your content automatically. (Then again, with AI training on web content, if you don't want your ideas stolen and repackaged by AI, then maybe you want to make your content <em>un</em>-friendly to machines but that's beyond the scope of this article.)</p> 
-    <p>Take, for example, a screen reader&mdash;an electornic assistant that reads the contents of a web page to someone with a visual impairment. Imagine if none of the text content on a page was encapsulated by an element, and you had to infer from its style what it was&mdash;like it was a middle schooler's essay. The screen reader would have to say: "And here's a line that is bolded, centered and 16 point font" and you would have to infer that's a heading. And then it'd say, "Here's a few lines that have extra margin" and you'd infer that was a blockquote. Doesn't sound very easy, right? (Luckily, nothing I wrote back in middle school deserves to see the light of day, so that won't be an issue for anything I wrote). </p>
+    <p>Besides relieving some of the painstaking tedium of styling different elements of text, there's another benefit to wrapping text content in element tags that correspond to their semantic meaning: It makes the document machine-friendly.
+      </p>
+      <p>
+      That means things like search engines can parse and understand your content automatically. (Then again, with AI training on web content, if you don't want your ideas stolen and repackaged by AI, then maybe you want to make your content <em>un</em>-friendly to machines but that's beyond the scope of this article.)</p> 
+    <p>Take, for example, a screen reader&mdash;an electornic assistant that reads the contents of a web page to someone with a visual impairment. Imagine if none of the text content on a page was encapsulated by an element, and you had to infer from its style what it was&mdash;like it was a middle schooler's essay. 
+      </p>
+      <p>
+      The screen reader would have to say: "And here's a line that is bolded, centered and 16 point font" and you would have to infer that's a heading. And then it'd say, "Here's a few lines that have extra margin" and you'd infer that was a blockquote. Doesn't sound very easy, right? (Luckily, nothing I wrote back in middle school deserves to see the light of day, so that won't be an issue for anything I wrote). </p>
     <p>The only drawback to writing text in HTML elements is that, while it's machine-friendly, it's not always human-friendly to place everything in ugly brackets like <code>&lt;p&gt;</code>. This was the impetus for inventing <a href="https://www.markdownguide.org/">markdown</a>, a more human-friendly way to write text for the web. Markdown uses simple indicators, like <code>#</code> symbol for headings, or <code>-</code> for lists, or surrounded by <code>_</code> for italics, that corrsepond directly to HTML elements. Although you still have to use a markdown-parser or a plugin to convert the markdown to HTML. </p>
     <h2>The elements of style</h2>
     <p>Before adding more styles, let's first establish some of the different kinds of HTML elements that make-up a text-focused web page. If you want to see *all* HTML elements, you can browse them <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">here</a>.</p>
@@ -122,7 +128,7 @@ One of the things the <code>user-agent</code> doesn't set is text-color, since i
 I want to keep things simple, so I want the text to be black on white background. But this doesn't mean the text has to be totally black. It can be easier to read if most of the text softened a bit. Plus, then you can make certain elements stand out out by darkening them relative to the base text. Or you can soften certain elements ever so slightly. 
 </p>
 <p>
-I'll color the text using the HSL color system, which separates out the hue, saturation and lightness so you can toggle each of those separately. 
+I'll color the text using the HSL color system, which separates out the hue, saturation and lightness of the color so you can toggle each of those separately. 
 </p>
 <p>
 I'll use CSS variables to define each component of the HSL color so I only have to change the variables in one place, and then I'll define the colors by using those variables like this:
@@ -160,7 +166,7 @@ p, ul, ol {
 }
 </code></pre>
 <p>
-Then there are some elements, like headings and bold, that I want to be darker than the main body of text. For these I'll set another lightness variable, called <code>--bold-text-lightness</code>, and set it to 3%. Then the ruleset for bold text colors will look like so:
+Then there are some elements, like headings and bolded text, that I want to be darker than the main body of text. For these I'll set another lightness variable, called <code>--bold-text-lightness</code>, and set it to 3%. Then the ruleset for bold text colors will look like so:
 </p>
 
 <pre><code>
@@ -242,7 +248,7 @@ So I'll give them <code>3rem</code> of margin on the top and bottom, and a sligh
 But blockquotes I think deserve even a little more emphasis than that. So I'll add just a little border on the left by setting the <code>margin-left</code> to 0, adding <code>2.5rem</code> of padding on the left side, and giving it a <code>4px</code> solid left border. I'll also make the border a light green just to add a little bit of flare. 
 </p>
 <p>
-There's no other color in the article so this helps say that the blockquote, at least the blockquote I included in this article, is <strong>really important</strong>. In fact, if my reader remembers anything from this article, I want it to be the quote above from David Byrne, because he articulated the point of this article better than I ever could. Everything else is plain and dumb. 
+There's no other color in the article so this helps say that the blockquote, at least the blockquote I included in this article, is <strong>really important</strong>. In fact, if my reader remembers anything from this article, I want it to be the quote above from David Byrne. He articulated the point of this article better than I ever could. Everything else is plain and dumb. 
 </p>
 <p>
 Altogether, the ruleset for blockquote element looks like this:
