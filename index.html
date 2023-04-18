@@ -10,22 +10,22 @@
     <h1>Styling prose on the web</h1>
     <p>There's oceans of content on the web, much of which is like what you're reading now: text. How text is presented on the web&#8212;its style, font, layout, color&#8212;is analogous to the clarity of the water. If it's too murky, you can't see much. But if it's perfectly clear, you won't even notice it, and can instead focus on all the amazing stuff under the sea. </p>
     <p>This is how I approach styling text on the web: styles serve to clarify and illuminate content, and when done right, should hardly be noticed at all.</p>
-    <h2>Basic text styles</h2>
+    <h2>Plain text</h2>
     <p>At first glance, making text readable shouldn't be too hard. Text is just text. There aren't a whole lot of variables to work with... well besides the 
-      <code>font-size, line-height, alignment, margin, font-weight, font-color, background-color, text-decoration</code>. Okay, maybe that is a lot.
+      <code>font-family, font-size, line-height, alignment, margin, font-weight, font-color, background-color, text-decoration</code>. Okay, maybe that is a lot.
     </p>
     <p>Only you don't need to set all of those perfectly. Actually, you only need a few CSS styles to make text readable.</p>
     <p>This tiny snippet of CSS can take you a long way:</p>
     <pre>
       <code>
-        body {
-          max-width: 65ch;
-          padding: 1rem 1rem;
-          margin: auto;
-          line-height: 1.75;
-          font-size: 1.5em;
-          font-family: sans-serif;
-        }
+body {
+  max-width: 65ch;
+  padding: 1rem 1rem;
+  margin: auto;
+  line-height: 1.75;
+  font-size: 1.5em;
+  font-family: sans-serif;
+}
       </code>
     </pre>
     <p>I adapted this ruleset from <a href="https://www.swyx.io/css-100-bytes">this post by swyx</a>.</p>
@@ -46,9 +46,9 @@
     <h2>Just a tad more style</h2>
     <p>If you want to take it a step further, you can add a few more styles to give headings more prominence.</p>
     <pre><code>
-      h1,h2,h3,h4,h5,h6 {
-        margin: 3rem 0 1rem;
-      }
+h1,h2,h3,h4,h5,h6 {
+  margin: 3rem 0 1rem;
+}
     </code></pre>
     <p>The above ruleset gives all the headings (<code>h1-h6</code>, with <code>h1</code> being the biggest heading) more margin on the top and a little more on the bottom.</p>
     <p>Regardless, it's really not that complicated to style basic text so it's presentable and easy to read. In fact, that's kinda the point: the style of text shouldn't be conspicuous, it's the content itself you want the reader focusing on.
@@ -64,7 +64,7 @@
     </p>
     <h2>Styling HTML tags</h2>
     <p>So let's add a little more style, but do so in a way that enhances the meaning instead of distracting from it.</p>
-    <p>But how? Since I'm styling with CSS&mdash;the primary way to style on the Web&mdash;there's a a few ways you can add style to an alement of prose. You can use the HTML tag as a selector&mdash;like what I did above with the <code>body</code> and header tags. You can use classes. You can use inline styles. Or you can use a third-party library, like TailwindCSS, that uses <em>semantic</em> classes. </p>
+    <p>But how? Since I'm styling with CSS&mdash;the primary way to style on the Web&mdash;there's a a few ways you can add style to an alement of prose. You can use the HTML tag as a selector&mdash;like what I did above with the <code>body</code> and header tags. You can use classes. You can use inline styles. Or you can use a third-party library, like <a href="https://tailwindcss.com/">TailwindCSS</a>, that uses <em>semantic</em> classes. </p>
     <p>There are applications for all these methods of applying styles, but right now I'm just trying to stay basic web prose. So all I'm going to worry about is styling the various HTML elements&mdash;like <code>p</code>, <code>h1</code>, and <code>blockquote</code>&mdash;that make up that prose.  </p>
     <p>Why focus just on HTML tags? Because HTML tags should already carry the semantic meaning of the various elements of prose. The styles are just a way to help convey that semantic meaning already embedded in the document to a human reader.</p>
     <p>This is part of the magic of the web, and what sets web prose apart from, say, writing on Microsoft Word or Google Docs or a notes app. </p>
@@ -143,7 +143,8 @@ I'll use CSS variables to define each component of the HSL color so I only have 
   color: hsl(
     var(--main-text-hue),
     var(--main-text-sat),
-    var(--main-text-lightness));
+    var(--main-text-lightness)
+    );
 
 }
 </code></pre>
@@ -162,7 +163,8 @@ p, ul, ol {
   color: hsl(
     var(--main-text-hue),
     var(--main-text-sat),
-    var(--main-text-lightness));
+    var(--main-text-lightness)
+  );
 }
 </code></pre>
 <p>
@@ -174,7 +176,8 @@ strong, h1, h2, h3, h4, h5, h6 {
   color: hsl(
     var(--main-text-hue),
     var(--main-text-sat),
-    var(--bold-text-lightness));
+    var(--bold-text-lightness)
+  );
 }
 </code></pre>
 <p>
@@ -186,7 +189,8 @@ blockquote, code {
   color: hsl(
     var(--main-text-hue),
     var(--main-text-sat),
-    var(--semibold-text-lightness));
+    var(--semibold-text-lightness)
+  );
 }
 </code></pre>
 <p>
@@ -201,14 +205,16 @@ figcaption {
   color: hsl(
     var(--main-text-hue),
     var(--main-text-sat),
-    var(--lighter-text-lightness));
+    var(--lighter-text-lightness)
+  );
 }
 
 hr {
   color: hsl(
     var(--main-text-hue),
     var(--main-text-sat),
-    var(--lightest-text-lightness));
+    var(--lightest-text-lightness)
+  );
 }
 </code></pre>
 <p>
@@ -255,14 +261,14 @@ Altogether, the ruleset for blockquote element looks like this:
 </p>
 
 <pre><code>
-  blockquote {
+blockquote {
     margin-top: 3rem;
     margin-bottom: 3rem;
     font-size: 1.75rem;
     margin-left: 0px;
     padding-left: 2.5rem;
     border-left: 4px solid rgb(95, 209, 150);
-  }
+}
 </code></pre>
 <p>
 And that's it! Those are all the styles I used for this very article. It's not much, but the simplicity allows the few styles I did add to have outsize effect. And hopefully these styles let the reader focus on the content and forget about the style altogether.
@@ -275,90 +281,90 @@ In any case, here's the full CSS stylesheet used to style this article if you're
 </p>
 
 <pre><code>
-  /* base styles */
-  body {
-    max-width: 65ch;
-    padding: 1rem 1rem;
-    margin: auto;
-    line-height: 1.65;
-    font-size: 1.5rem;
-    font-family: sans-serif;
-  }
+/* base styles */
+body {
+  max-width: 65ch;
+  padding: 1rem 1rem;
+  margin: auto;
+  line-height: 1.65;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+}
 
-  h1,h2,h3,h4,h5,h6 {
-    margin: 3rem 0 1rem;
-  }
+h1,h2,h3,h4,h5,h6 {
+  margin: 3rem 0 1rem;
+}
 
-  /* text colors */
-  * {
-    --main-text-hue: 0;
-    --main-text-sat: 0%;
-    --main-text-lightness: 11%;
+/* text colors */
+* {
+  --main-text-hue: 0;
+  --main-text-sat: 0%;
+  --main-text-lightness: 11%;
 
-    --bold-text-lightness: 3%;
-    --semibold-text-lightness: 5%;
-    --lighter-text-lightness: 20%;
-    --lightest-text-lightness: 30%; 
+  --bold-text-lightness: 3%;
+  --semibold-text-lightness: 5%;
+  --lighter-text-lightness: 20%;
+  --lightest-text-lightness: 30%; 
 
-    color: hsl(
-      var(--main-text-hue),
-      var(--main-text-sat),
-      var(--body-text-lightness));
+  color: hsl(
+    var(--main-text-hue),
+    var(--main-text-sat),
+    var(--body-text-lightness));
 
-  }
+}
 
-  strong, h1, h2, h3, h4, h5, h6 {
-    color: hsl(
-      var(--main-text-hue),
-      var(--main-text-sat),
-      var(--bold-text-lightness));
-  }
+strong, h1, h2, h3, h4, h5, h6 {
+  color: hsl(
+    var(--main-text-hue),
+    var(--main-text-sat),
+    var(--bold-text-lightness));
+}
 
-  blockquote, code {
-    color: hsl(
-      var(--main-text-hue),
-      var(--main-text-sat),
-      var(--semibold-text-lightness));
-  }
+blockquote, code {
+  color: hsl(
+    var(--main-text-hue),
+    var(--main-text-sat),
+    var(--semibold-text-lightness));
+}
 
-  p, ul, ol {
-    color: hsl(
-      var(--main-text-hue),
-      var(--main-text-sat),
-      var(--main-text-lightness));
-  }
+p, ul, ol {
+  color: hsl(
+    var(--main-text-hue),
+    var(--main-text-sat),
+    var(--main-text-lightness));
+}
 
-  figcaption {
-    color: hsl(
-      var(--main-text-hue),
-      var(--main-text-sat),
-      var(--lighter-text-lightness));
-  }
+figcaption {
+  color: hsl(
+    var(--main-text-hue),
+    var(--main-text-sat),
+    var(--lighter-text-lightness));
+}
 
-  hr {
-    color: hsl(
-      var(--main-text-hue),
-      var(--main-text-sat),
-      var(--lightest-text-lightness));
-  }
+hr {
+  color: hsl(
+    var(--main-text-hue),
+    var(--main-text-sat),
+    var(--lightest-text-lightness));
+}
 
-  /* extra touches */
-  pre, code {
-    background-color: hsl(0,0%,97%);
-  }
+/* extra touches */
+pre, code {
+  background-color: hsl(0,0%,97%);
+}
 
-  blockquote {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    font-size: 1.75rem;
-    margin-left: 0px;
-    padding-left: 2.5rem;
-    border-left: 4px solid rgb(95, 209, 150);
-  }
+blockquote {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  font-size: 1.75rem;
+  margin-left: 0px;
+  padding-left: 2.5rem;
+  border-left: 4px solid rgb(95, 209, 150);
+}
 
-  hr {
-    margin-top: 3rem;
-  }
+hr {
+  margin-top: 3rem;
+}
 </code></pre>
     <script type="module" src="src/script.js"></script>
   </body>
