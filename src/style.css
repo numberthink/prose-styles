@@ -2,14 +2,23 @@
 
 /* base styles */
 body {
-  max-width: 65ch;
-  padding: 1rem 1rem;
+  max-width: 60ch;
+  padding: 1rem .75rem;
   margin: auto;
-  line-height: 1.55;
+  line-height: 1.6;
   /* line-height: calc(1em + 1ex); */
-  font-size: 1.5rem;
-  font-family: sans-serif;
-  overflow-wrap: break-word;
+  font-size: 1.15rem;
+  /* font-size: 18px; */
+  /* font-family: sans-serif; */
+  /* overflow-wrap: break-word; */
+  word-break: break-word;
+  -webkit-font-smoothing: subpixel-antialiased;
+  /* font-family: 'Spectral', serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; */
+  font-kerning: auto;
+  font-weight: 400;
+  /* font-family: -apple-system, -system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
+  font-family: -apple-system-ui-serif, ui-serif, "Spectral", "Georgia", serif;
+  letter-spacing: 0em;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -21,14 +30,14 @@ h1,h2,h3,h4,h5,h6 {
 * {
   --main-text-hue: 0;
   --main-text-sat: 0%;
-  --main-text-lightness: 11%;
+  --main-text-lightness: 25%;
 
   --bold-text-lightness: 3%;
   --semibold-text-lightness: 5%;
   --lighter-text-lightness: 20%;
   --lightest-text-lightness: 30%; 
 
-  color: hsl(var(--main-text-hue),var(--main-text-sat),var(--body-text-lightness));
+  color: hsl(var(--main-text-hue),var(--main-text-sat),var(--main-text-lightness));
 
 }
 

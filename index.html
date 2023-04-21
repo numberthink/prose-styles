@@ -8,52 +8,56 @@
   </head>
   <body>
     <h1>Styling prose on the web</h1>
-    <p>There's oceans of content on the web, much of which is like what you're reading now: text. How text is presented on the web&#8212;its style, font, layout, color&#8212;is analogous to the clarity of the water. If it's too murky, you can't see much. But if it's perfectly clear, you won't even notice it, and can instead focus on all the amazing stuff under the sea. </p>
-    <p>This is how I approach styling text on the web: styles serve to clarify and illuminate content, and when done right, should hardly be noticed at all.</p>
-    <h2>Plain text</h2>
-    <p>At first glance, making text readable shouldn't be too hard. Text is just text. There aren't a whole lot of variables to work with... well besides the 
-      <code>font-family, font-size, line-height, alignment, margin, font-weight, font-color, background-color, text-decoration</code>. Okay, maybe that is a lot.
-    </p>
-    <p>Only you don't need to set all of those perfectly. Actually, you only need a few CSS styles to make text readable.</p>
-    <p>This tiny snippet of CSS can take you a long way:</p>
-    <pre>
-      <code>
-body {
-  max-width: 65ch;
-  padding: 1rem 1rem;
-  margin: auto;
-  line-height: 1.75;
-  font-size: 1.5em;
-  font-family: sans-serif;
-}
-      </code>
-    </pre>
-    <p>I adapted this ruleset from <a href="https://www.swyx.io/css-100-bytes">this post by swyx</a>.</p>
-    <p>Let's break it down line by line.</p>
-    <p>First is the selector. I chose the <code>body</code> element since in the vast majority of cases, text will be inside the body tag of the HTML. You could also use the <code>html</code> element as a more general selector, or <code>:root</code> which is more general still.</p>
-    <p>I just chose <code>body</code> since it is a <em>body</em> of text after all (or a <em>body</em> of water if we're still swimming in the ocean metaphor).</p>
-    <p>Now let's get into the 6 properties in this ruleset. First we have the <code>max-width: 65ch</code>. According to <a href="https://baymard.com/blog/line-length-readability">this research</a> by the Baymard Institute, the optimal "readable" range is measured in characters and should be about 50-75 characters wide. I chose 65 but you can go a little narrower or wider.</p>
-    <p>Conveniently, CSS let's you express width in character units using the <code>ch</code> unit.</p>
-    <p>Next is <code>padding</code> which is set as <code>1rem 1rem</code>. The first number represents top/bottom and the second left/right padding.</p>
-    <p>Setting the left/right padding as <code>1rem</code> keeps the text from going all the way to the edges of a screen on devices smaller than the <code>max-width</code>. This can be unpleasant because you feel like, "This is starting from the edge, am I missing something?" and can put your readers on edge.</p>
-    <p>The top/bottom padding of <code>1rem</code> also gives you a little breathing room at the top and bottom of the page (and some may use even more).</p>
-    <p>The <code>rem</code> represents "root element units". These are <em>like</em> pixel units, except that they are <em>relative</em>. This means if someone zooms in or out, whatever is measured in <code>rem</code> will increase or decrease in size proportionally, as opposed to pixel units which are still a pixel no matter how much you zoom. <code>em</code> are similar but differ slightly from <code>rem</code> in that they are relative to the parent element, as opposed to the <code>:root</code> element which makes them susceptible to compounding effects.
-    <a href="https://www.joshwcomeau.com/css/surprising-truth-about-pixels-and-accessibility/">This blog post</a> does a great deep dive into the nuances of pixels vs. rem/em. </p>
-    <p>Next we have <code>margin</code> which is set as <code>auto</code>. The "auto" means that it centers the text automatically when the screen width is greater than the <code>max-width</code>.</p>
-    <p>The <code>line-height</code> of 1.75 gives ample spacing between lines for clarity. There's no unit attached so it's relative to the <code>font-size</code>.</p>
-    <p>The <code>font-size</code> is set to <code>1.5rem</code>. This just feels like a good size to me.</p>
-    <p>Finally, I made the <code>font-family</code> sans-serif because it it looks cleaner to me.</p>
-    <h2>Just a tad more style</h2>
-    <p>If you want to take it a step further, you can add a few more styles to give headings more prominence.</p>
-    <pre><code>
-h1,h2,h3,h4,h5,h6 {
-  margin: 3rem 0 1rem;
-}
-    </code></pre>
-    <p>The above ruleset gives all the headings (<code>h1-h6</code>, with <code>h1</code> being the biggest heading) more margin on the top and a little more on the bottom.</p>
-    <p>Regardless, it's really not that complicated to style basic text so it's presentable and easy to read. In fact, that's kinda the point: the style of text shouldn't be conspicuous, it's the content itself you want the reader focusing on.
-      <aside>That is, unless the content is <em>about</em> styles, in which case yeah, you do kinda want the reader focusing on them.</aside>
-    </p>
+    <p>This is part 1 of a series of posts on styling web prose. "Minimum viable style" is a play on the common phrase used by technology teams, "minimum viable product", which, confusingly, has the same abbreviation as "most valuable player".<aside>(But I think we all know who the <em>real</em> MVP is.)</aside>
+      <p>By "minimum viable style" I mean the mimumum styles you need to make text readable. Everything beyond that is just cherries on top. If you like cherries, though, you can check out part 2 of this series when you finish this.</p>
+      <p>There's oceans of content on the web, much of which is like what you're reading now: text.</p>
+      <p>How text is styled on the web&#8212;its font, layout, color&#8212;is analogous to the clarity of the water. If it's too murky, you can't see much. But if it's perfectly clear, you won't even notice it. You'll be too busy marvelling at all the amazing stuff under the sea. </p>
+      <p>At least this is how I approach styling text on the web: 
+          <strong>styles serve to clarify and illuminate content, and when done right, should hardly be noticed.</strong></p>
+      <h2>Plain text</h2>
+      <p>At first glance, making text readable shouldn't be too hard. It's just text. There aren't a whole lot of variables to work with... well besides the 
+        <code>font-family, font-size, line-height, alignment, margin, font-weight, font-color, background-color, text-decoration</code>. Okay, maybe that is a lot.
+      </p>
+      <p>But you don't need to set all of those variables everywhere all the time. You just need to set a few of them once, in one place.</p>
+          <p>
+          Just these few lines of
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> (Cascading style sheets, the primary way to style text on the web) can make text surprisingly readable.</p>
+      <pre>
+        <code>
+  body {
+    max-width: 65ch;
+    padding: 1rem 1rem;
+    margin: auto;
+    font-size: 1.5em;
+    line-height: 1.75;
+    font-family: sans-serif;
+  }</code>
+      </pre>
+      <p>I adapted this ruleset from <a href="https://www.swyx.io/css-100-bytes">this post by swyx</a>. Let's break it down line by line.</p>
+      <h3>First, the selector: <code>body</code></h3>
+      <p>This defines the HTML elements that a ruleset applies to. I chose <code>body</code> since it is a <em>body</em> of text after all (or a <em>body</em> of water if we're still swimming in the ocean metaphor). Also text is almost always within the body tag of the HTML. <aside>(You could also use the <code>html</code> tag or <code>:root</code> for more generality.)</aside>
+      <p>Now let's get into the 6 properties in this ruleset.</p>
+      <h3>Max width: <code>{`max-width: 65ch`}</code></h3>
+      <p> First we have the <code>max-width</code>. According to <a href="https://baymard.com/blog/line-length-readability">this research</a> by the Baymard Institute, the optimal "readable" range is measured in characters and should be about 50-75 characters wide.</p>
+      <p>Conveniently, CSS let's you express width in character units using the <code>ch</code> unit. (Meaning you don't have to worry about adjusting width whenever you adjust font-size.)</p>
+      <h3>Padding: <code>padding: 1rem 1rem</code></h3>
+      <p>Next is <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding"><code>padding</code></a> (not to be confused with <code>margin</code>). The first number represents top/bottom and the second left/right padding.</p>
+      <p>Setting a small amount of left/right padding keeps the text from going all the way to the edges of a screen on devices smaller than the <code>max-width</code>, which can put the reader on edge.</p>
+      <p>A little top/bottom padding also gives you some breathing room at the top and bottom of the page.</p>
+      <p>The <code>rem</code> represents "root element units". These are like pixel units, except that they are <em>relative</em>. This means when zoomed in or out, they increase or decrease in size proportionally, as opposed to pixel units which are still a pixel no matter how much you zoom. <code>em</code> are similar to <code>rem</code> but relative to their parent instead of the <code>:root</code> element.
+      <a href="https://www.joshwcomeau.com/css/surprising-truth-about-pixels-and-accessibility/">This blog post</a> does a great deep dive into the nuances of pixels vs. rem/em. </p>
+      <h3>Margin: <code>margin: auto</code></h3>
+      <p>Next we have <code>margin</code> which is set as <code>auto</code>. This means the text automatically when the screen width is greater than the <code>max-width</code>.</p>
+      <h3>Font size: <code>font-size: 1.5rem</code></h3>
+      <p>The <code>font-size</code> is set to <code>1.5rem</code>. This can be set by feel, but body text should generally be between .9-1.5rem (14px-24px) according to this <a href="https://www.editorx.com/shaping-design/article/font-size">article</a>.</p>
+      <h3>Line height: <code>line-height: 1.75</code></h3>
+      <p>The <code>line-height</code> should be at least 1.5 for clarity. It's left unitless on purpose so it's relative to the <code>font-size</code>.</p>
+      <h3>Font family: <code>font-family: sans-serif</code></h3>
+      <p>Finally, I made the <code>font-family</code> sans-serif (without the little "tails" and "feet") because it it looks cleaner to me.</p>
+      <h2>Closing thoughts</h2>
+      <p>And that's it! You don't have to agree with all my opinions--everyone should try on their own style!--but hopefully this shows that styling text doesn't have to be elaborate or complicated.</p>
+      <p>In fact, to me, the best kind of style is nearly invisible. It's the content itself you want the reader focusing on.<aside>That is, unless the content is <em>about</em> styles, in which case you want the reader thinking about them <sm>a little bit.</sm></aside>
+      <p>Okay, you caught me <span class="text-red-500">red-&#128075;</span>. There a few more styles present in this text than I described above. If you're interested in those, you can read about them in part 2 here.</p>
     <hr/>
     <h2>Style is simplicity and transparency</h2>
     <p>But we don't have to stop there. We just have to be <em>thoughtful</em> about any more styles that are added.</p>
