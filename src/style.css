@@ -3,11 +3,11 @@
 /* base styles */
 body {
   max-width: 60ch;
-  padding: 1rem .75rem;
+  padding: 1rem 1rem;
   margin: auto;
   line-height: 1.6;
   /* line-height: calc(1em + 1ex); */
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   /* font-size: 18px; */
   /* font-family: sans-serif; */
   /* overflow-wrap: break-word; */
